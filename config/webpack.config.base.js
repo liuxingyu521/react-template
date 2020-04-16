@@ -3,9 +3,12 @@ const projectPaths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+
+// 从 process.env 环境里取 bundleAnalyzer 设置
+const Use_BundleAnalyzer = process.env.USE_BUNDLE_ANALYZER
 
 module.exports = {
-  mode: 'development',
   entry: path.join(projectPaths.appSrc, 'index.tsx'),
   output: {
     path: projectPaths.appDist,
@@ -41,7 +44,9 @@ module.exports = {
         to: path.join(projectPaths.appDist, 'favicon.ico'),
       },
     ]),
-  ],
+    // 分析打包后的包大小
+    Use_BundleAnalyzer && new BundleAnalyzerPlugin(),
+  ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '*'],
   },
