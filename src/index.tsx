@@ -6,4 +6,6 @@ import { Print } from './test/decorator'
 const print = new Print()
 print.exec()
 
+console.log(process.env.NODE_ENV)
+
 render(<App />, document.getElementById('root'))
