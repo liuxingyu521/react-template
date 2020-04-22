@@ -3,6 +3,6 @@
     "target": "es6",
     "jsx": "react",
     "experimentalDecorators": true, // 开启装饰器模式
-    "moduleResolution": "node" // 模块解析时按照 node 模块方式寻找
+    "moduleResolution": "node" // 模块解析时按照 node 模块方式寻找，优先 node_modules
   }
 }

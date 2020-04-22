@@ -11,6 +11,8 @@ let arr = []
   .map(() => {})
   .filter(() => {})
 
+console.log('asdf'.padEnd(3))
+
 function logDecorator(target, name, descriptor) {
   const func = descriptor.value
 
