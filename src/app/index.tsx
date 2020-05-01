@@ -1,4 +1,8 @@
 import * as React from 'react'
+import { Router, Switch } from 'react-router-dom'
+import appHistory from '@common/history'
+import appRouter from './routes'
+import routes from './routes/routes'
 import './style.scss'
 
 export default class App extends React.Component {
@@ -6,7 +10,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <h1 className="title">react template</h1>
+      <Router history={appHistory}>
+        <h1 className='title'>react template</h1>
+        <Switch>{appRouter.renderRoutes(routes)}</Switch>
+      </Router>
     )
   }
 }
