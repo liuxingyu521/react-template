@@ -4,6 +4,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const webpack = require('webpack')
 
 // 当前环境
@@ -19,7 +21,9 @@ module.exports = {
   },
   output: {
     path: projectPaths.appDist,
-    filename: `[name].[chunkhash:8].${isProd ? 'min.' : ''}js`,
+    filename: `js/[name].[chunkhash:8].${isProd ? 'min.' : ''}js`,
+    /** 在引用的相对资源路径前增加前缀 */
+    // publicPath: 'js/',
   },
   module: {
     rules: [
@@ -41,7 +45,7 @@ module.exports = {
       {
         test: /\.(s[ac]|c)ss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },
@@ -57,10 +61,20 @@ module.exports = {
         to: path.join(projectPaths.appDist, 'favicon.ico'),
       },
     ]),
+    // 拆分 css 文件
+    new MiniCssExtractPlugin({
+      filename: `css/[name].[chunkhash:8].${isProd ? 'min.' : ''}css`,
+    }),
     // 分析打包后的包大小
     Use_BundleAnalyzer && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '*'],
+    plugins: [
+      new TsconfigPathsPlugin({
+        configFile: path.join(projectPaths.appPath, 'tsconfig.json'),
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      }),
+    ],
   },
 }
