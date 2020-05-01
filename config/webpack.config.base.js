@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { getLastCommitHash } = require('./util')
 const webpack = require('webpack')
 
 // 当前环境
@@ -51,6 +52,11 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    // 生成带有最后一次构建信息以及其他一些信息的banner
+    new webpack.BannerPlugin(`
+      - @auther Xuer<xuj_power@qq.com>
+      - fileInfo: ${getLastCommitHash()}
+    `),
     new HtmlWebpackPlugin({
       template: path.join(projectPaths.appViews, 'index.html'),
       favicon: path.join(projectPaths.public, 'favicon.ico'),
