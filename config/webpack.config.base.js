@@ -45,9 +45,9 @@ module.exports = {
         ],
       },
       {
-        test: /\.(s[ac]|c)ss$/,
+        test: /\.(le|c)ss$/,
         exclude: /node_modules/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'less-loader'],
       },
     ],
   },
@@ -78,7 +78,7 @@ module.exports = {
     Use_BundleAnalyzer && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '*'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.less', '.css', '*'],
     plugins: [
       new TsconfigPathsPlugin({
         configFile: path.join(projectPaths.appPath, 'tsconfig.json'),

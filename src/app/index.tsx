@@ -3,7 +3,7 @@ import { Router, Switch } from 'react-router-dom'
 import appHistory from '@common/history'
 import appRouter from './routes'
 import routes from './routes/routes'
-import './style.scss'
+import './style'
 
 export default class App extends React.Component {
   readonly id = 'unique'
