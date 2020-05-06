@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const WebpackBar = require('webpackbar')
 const { getLastCommitHash } = require('./util')
 const webpack = require('webpack')
 
@@ -71,6 +72,8 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: `css/[name].[chunkhash:8].${isProd ? 'min.' : ''}css`,
     }),
+    // 显示 webpack 打包进度
+    new WebpackBar(),
     // 分析打包后的包大小
     Use_BundleAnalyzer && new BundleAnalyzerPlugin(),
   ].filter(Boolean),
