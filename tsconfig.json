@@ -6,7 +6,8 @@
     "experimentalDecorators": true, // 开启装饰器模式
     "allowSyntheticDefaultImports": true, // 允许使用全部默认导入， eg. import React from 'react'
     "moduleResolution": "node", // 模块解析时按照 node 模块方式寻找，优先 node_modules
-    "esModuleInterop": true,
+    "esModuleInterop": true, // 实现 commonjs 和 esModule 默认导出命名空间， eg. module.exports = {foo: 1} => import Consts from 'xxx.js'  =>  可以使用 Consts.foo
+    "sourceMap": true,
     "paths": {
       "@common/*": ["src/common/*"],
       "@src/*": ["src/*"]

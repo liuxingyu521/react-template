@@ -56,7 +56,7 @@ module.exports = {
     // 生成带有最后一次构建信息以及其他一些信息的banner
     new webpack.BannerPlugin(`
       - @auther Xuer<xuj_power@qq.com>
-      - fileInfo: ${getLastCommitHash()}
+      - @fileInfo: ${getLastCommitHash()}
     `),
     new HtmlWebpackPlugin({
       template: path.join(projectPaths.appViews, 'index.html'),
