@@ -75,12 +75,12 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "prettier --write",
-      "eslint --fix"
+      "eslint --fix",
+      "prettier --write"
     ],
     "*.{scss,less,css}": [
-      "prettier --write",
-      "stylelint --fix"
+      "stylelint --fix",
+      "prettier --write"
     ],
     "*.{json,md}": [
       "prettier --write"
