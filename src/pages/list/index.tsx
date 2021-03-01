@@ -10,7 +10,9 @@ export default class ListPage extends Component {
   render() {
     return (
       <>
-        <h3 onClick={this.gotoHome}>list</h3>
+        <h3>
+          List <button onClick={this.gotoHome}>去首页</button>
+        </h3>
         <ul>
           <li>条目一</li>
           <li>条目二</li>

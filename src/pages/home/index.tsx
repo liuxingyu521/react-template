@@ -10,7 +10,9 @@ export default class Home extends React.Component {
   render() {
     return (
       <div className='home'>
-        <p onClick={this.gotoList}>Home</p>
+        <h3>
+          Home <button onClick={this.gotoList}>去列表</button>
+        </h3>
       </div>
     )
   }
